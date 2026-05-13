@@ -81,6 +81,8 @@ async def dm(message, args, client):
 
     if not compiled:
         compiled=f"{sender} thought of you \:)"
+    else:
+        compiled=f"{sender} says:\n{compiled}"
 
     try:
         await message.delete()
@@ -89,6 +91,6 @@ async def dm(message, args, client):
 
     for target in targets:
         try:
-            await target.send(f"{sender} says:\n{compiled}")
+            await target.send(compiled)
         except:
             await message.channel.send(f"Couldn't message {target.display_name} ;-;")
