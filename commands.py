@@ -57,21 +57,17 @@ async def summon(message,args,client):
 
         try:
             await client.wait_for("message",timeout=10,check=check)
-            await message.channel.send(f"My job here is done \:)")
+            await message.channel.send(f"My job here is done :)")
             break
         except asyncio.TimeoutError:
             attempts+=1
             if(attempts>=6):
-                await message.channel.send("I give up \:(")
+                await message.channel.send("I give up :(")
                 break
             else:
                 pass
 
 async def dm(message, args, client):
-
-    if not message.mentions:
-        await message.channel.send("Um.. since it lacks an address, your words shall stay with me \:')")
-        return
 
     targets= message.mentions
     sender= "Someone" if "--a" in args else message.author.display_name
@@ -80,14 +76,16 @@ async def dm(message, args, client):
     compiled=" ".join(content).strip()
 
     if not compiled:
-        compiled=f"{sender} thought of you \:)"
+        compiled=f"{sender} thought of you :)"
     else:
         compiled=f"{sender} says:\n{compiled}"
 
     try:
         await message.delete()
+        if not targets:
+            await message.channel.send("Um.. since it lacks an address, your words shall stay with me :')")
     except:
-        await message.channel.send("Couldn't delete your message \:(")
+        await message.channel.send("Couldn't delete your message :(")
 
     for target in targets:
         try:
