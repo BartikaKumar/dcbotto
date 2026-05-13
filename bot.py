@@ -31,6 +31,7 @@ commands={
     "choose":choose,
     "invite":invite,
     "summon":summon,
+    "dm":dm,
 }
 
 # called when message sent in server

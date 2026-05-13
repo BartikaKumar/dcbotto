@@ -66,3 +66,29 @@ async def summon(message,args,client):
                 break
             else:
                 pass
+
+async def dm(message, args, client):
+
+    if not message.mentions:
+        await message.channel.send("Um.. since it lacks an address, your words shall stay with me \:')")
+        return
+
+    targets= message.mentions
+    sender= "Someone" if "--a" in args else message.author.display_name
+
+    content=[arg for arg in args if not arg.startswith("<@") and arg!="--a"]
+    compiled=" ".join(content).strip()
+
+    if not compiled:
+        compiled=f"{sender} thought of you \:)"
+
+    try:
+        await message.delete()
+    except:
+        await message.channel.send("Couldn't delete your message \:(")
+
+    for target in targets:
+        try:
+            await target.send(f"{sender} says:\n{compiled}")
+        except:
+            await message.channel.send(f"Couldn't message {target.display_name} ;-;")
