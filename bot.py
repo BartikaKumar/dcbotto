@@ -27,9 +27,9 @@ async def on_ready():
 PREFIX=os.getenv("PREFIX","$")
 
 commands={
-    "hello":hello
-    #"hug":hug,
-    #"cuddle":cuddle
+    "hello":hello,
+    "choose":choose,
+    "invite":invite,
 }
 
 # called when message sent in server
