@@ -30,6 +30,7 @@ commands={
     "hello":hello,
     "choose":choose,
     "invite":invite,
+    "summon":summon,
 }
 
 # called when message sent in server
@@ -52,6 +53,6 @@ async def on_message(message):
     args= parts[1:]
 
     if command in commands:
-        await commands[command](message,args)
+        await commands[command](message,args,client)
 
 client.run(token)
